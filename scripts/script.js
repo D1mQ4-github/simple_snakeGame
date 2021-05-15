@@ -50,24 +50,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
             //Логика на врезания в себя (поиск дубликата координат)
             if (playerCords.filter(item => item[0] == posX && item[1] == posY).length > 1) {
-                endGame();
+                endGame({ status: 'lose' });
+            }
+            if (playerSize >= ((gameSize * gameSize) - 1)) {
+                endGame({ status: 'win' });
             }
         });
     }
 
-    function endGame() {
+    function endGame({ status }) {
         clearInterval(keyHandler);
 
         let message = document.createElement('div');
         message.classList.add('message');
-        message.textContent = `Игра окончена! Ваш результат: ${playerSize}`;
+
+        if (status === 'lose') {
+            message.textContent = `Вы проиграли! Ваш результат: ${playerSize}`;
+        } else {
+            message.textContent = `Поздравляем! Вы выиграли! Ваш результат: ${playerSize}`;
+        }
+
         playerSize = 1;
         playerCords = [];
-        pointsCounter.textContent = playerSize;
 
         gameFieldContainer.append(message);
 
         document.addEventListener('keydown', () => {
+            pointsCounter.textContent = playerSize;
             message.remove();
         });
     }
