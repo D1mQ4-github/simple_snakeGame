@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let playerSize = 1, //размер змейки
         playerCords = [], //координаты всех частей змейки
         pointX, pointY, //координаты яблочек
-        keyHandler; //переменная интервала обновления
+        keyHandler, //переменная интервала обновления
+        snakeSpeed = 100; //Переменная в МС обновления интервала движения змейки
 
     pointsCounter.textContent = playerSize;
 
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             posY = gameSize - 1;
                         }
                         getFieldCords({ posX: posX, posY: posY });
-                    }, 100);
+                    }, snakeSpeed);
                     break;
                 case 'arrowleft':
                 case 'ф':
@@ -125,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             posX = gameSize - 1;
                         }
                         getFieldCords({ posX: posX, posY: posY });
-                    }, 100);
+                    }, snakeSpeed);
                     break;
                 case 'arrowdown':
                 case 'ы':
@@ -137,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             posY = 0;
                         }
                         getFieldCords({ posX: posX, posY: posY });
-                    }, 100);
+                    }, snakeSpeed);
                     break;
                 case 'arrowright':
                 case 'в':
@@ -149,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             posX = 0;
                         }
                         getFieldCords({ posX: posX, posY: posY });
-                    }, 100);
+                    }, snakeSpeed);
                     break;
                 default:
                     console.error('Клавиши управления: W A S D');
