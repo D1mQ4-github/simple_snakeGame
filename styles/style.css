@@ -1,0 +1,63 @@
+.point-counter {
+    text-align: center;
+}
+
+.snake-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.snake-container {
+    display: block;
+}
+
+.snake__line {
+    display: flex;
+}
+
+.snake__field-item {
+    width: 15px;
+    height: 15px;
+    margin: 1px;
+    background-color: #aec300;
+}
+
+.snake__active {
+    background-color: black;
+    border-radius: 5px;
+}
+
+.snake__point {
+    position: relative;
+    background-color: #aec300;
+}
+
+.snake__point::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    content: " ";
+    display: block;
+    width: 70%;
+    height: 70%;
+    background-color: red;
+    border-radius: 50%;
+    border: 1px dotted black;
+}
+
+.message {
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid black;
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    text-transform: uppercase;
+    font-weight: bold;
+}
