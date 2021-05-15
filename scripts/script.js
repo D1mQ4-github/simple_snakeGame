@@ -1,3 +1,6 @@
+import 'mdn-polyfills/Array.prototype.includes';
+import 'mdn-polyfills/Object.create';
+
 document.addEventListener('DOMContentLoaded', () => {
     const pointsCounter = document.querySelector('.points'),
         gameFieldWrapper = document.querySelector('.snake-wrapper'),
@@ -5,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         gameSize = 10;
 
     gameFieldContainer.classList.add('snake-container');
-    gameFieldWrapper.append(gameFieldContainer);
+    gameFieldWrapper.insertAdjacentElement('afterbegin', gameFieldContainer);
 
     let playerSize = 1, //размер змейки
         playerCords = [], //координаты всех частей змейки
@@ -19,11 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let x = 0; x < size; x++) {
             let gameFieldLine = document.createElement('div');
             gameFieldLine.classList.add('snake__line');
-            gameFieldContainer.append(gameFieldLine);
+            gameFieldContainer.insertAdjacentElement('afterbegin', gameFieldLine);
             for (let y = 0; y < size; y++) {
                 let gameFieldBlock = document.createElement('div');
                 gameFieldBlock.classList.add('snake__field-item');
-                gameFieldLine.append(gameFieldBlock);
+                gameFieldLine.insertAdjacentElement('afterbegin', gameFieldBlock);
             }
         }
     }
@@ -74,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerSize = 1;
         playerCords = [];
 
-        gameFieldContainer.append(message);
+        gameFieldContainer.insertAdjacentElement('afterbegin', message);
 
         document.addEventListener('keydown', () => {
             pointsCounter.textContent = playerSize;
