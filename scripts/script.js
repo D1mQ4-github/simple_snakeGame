@@ -1,14 +1,19 @@
-import 'mdn-polyfills/Array.prototype.includes';
-import 'mdn-polyfills/Object.create';
+import { leaderboardAddScores, leaderboardGetScores } from './modules/leaderboard.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const pointsCounter = document.querySelector('.points'),
         gameFieldWrapper = document.querySelector('.snake-wrapper'),
         gameFieldContainer = document.createElement('div'),
+        boardContainer = document.createElement('div'),
+        boardList = document.createElement('ol'),
         gameSize = 10;
 
     gameFieldContainer.classList.add('snake-container');
-    gameFieldWrapper.insertAdjacentElement('afterbegin', gameFieldContainer);
+    gameFieldWrapper.append(gameFieldContainer);
+
+    boardContainer.classList.add('leaderboard');
+    gameFieldWrapper.append(boardContainer);
+    boardContainer.append(boardList);
 
     let playerSize = 1, //размер змейки
         playerCords = [], //координаты всех частей змейки
@@ -19,20 +24,22 @@ document.addEventListener('DOMContentLoaded', () => {
     pointsCounter.textContent = playerSize;
 
     function createGameField(size) {
+        leaderboardGetScores();
         for (let x = 0; x < size; x++) {
             let gameFieldLine = document.createElement('div');
             gameFieldLine.classList.add('snake__line');
-            gameFieldContainer.insertAdjacentElement('afterbegin', gameFieldLine);
+            gameFieldContainer.append(gameFieldLine);
             for (let y = 0; y < size; y++) {
                 let gameFieldBlock = document.createElement('div');
                 gameFieldBlock.classList.add('snake__field-item');
-                gameFieldLine.insertAdjacentElement('afterbegin', gameFieldBlock);
+                gameFieldLine.append(gameFieldBlock);
             }
         }
     }
 
     function getFieldCords({ posX, posY }) {
         const lines = document.querySelectorAll('.snake__line');
+
         lines.forEach(line => {
             line.querySelectorAll('.snake__field-item').forEach(block => block.classList.remove('snake__active'));
         });
@@ -64,6 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function endGame({ status }) {
         clearInterval(keyHandler);
+        leaderboardAddScores({ score: playerSize, name: 'Guest' });
+        leaderboardGetScores();
 
         let message = document.createElement('div');
         message.classList.add('message');
@@ -77,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playerSize = 1;
         playerCords = [];
 
-        gameFieldContainer.insertAdjacentElement('afterbegin', message);
+        gameFieldContainer.append(message);
 
         document.addEventListener('keydown', () => {
             pointsCounter.textContent = playerSize;

@@ -5,7 +5,7 @@
 .snake-wrapper {
     position: relative;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     padding: 15px;
     border: 1px solid black;
 }
@@ -60,4 +60,17 @@
     transform: translateX(-50%) translateY(-50%);
     text-transform: uppercase;
     font-weight: bold;
+}
+
+.leaderboard {
+    /* position: absolute; */
+    border: 1px solid black;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.leaderboard ol {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }

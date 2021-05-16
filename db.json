@@ -1,0 +1,34 @@
+{
+  "leaderboard": [
+    {
+      "score": 4,
+      "date": "16-04-2021",
+      "name": "Guest",
+      "id": 1
+    },
+    {
+      "score": 4,
+      "date": "16-04-2021",
+      "name": "Guest",
+      "id": 2
+    },
+    {
+      "score": 4,
+      "date": "16-04-2021",
+      "name": "Guest",
+      "id": 3
+    },
+    {
+      "score": 4,
+      "date": "16-04-2021",
+      "name": "Guest",
+      "id": 4
+    },
+    {
+      "score": 3,
+      "date": "16-04-2021",
+      "name": "Guest",
+      "id": 5
+    }
+  ]
+}

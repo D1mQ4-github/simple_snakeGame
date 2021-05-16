@@ -4,7 +4,7 @@ module.exports = {
     mode: 'production',
     entry: '/scripts/script.js',
     output: {
-        path: path.resolve(__dirname, '../dist/scripts'),
+        path: path.resolve(__dirname, '../src/scripts'),
         filename: 'bundle.js',
     },
     watch: true,
