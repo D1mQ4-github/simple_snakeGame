@@ -1,13 +1,16 @@
 import { postData, getResource } from '../services/services.js';
 
 const dbUrl = 'http://localhost:3000/leaderboard';
-let time = new Date();
 
 function leaderboardAddScores({ score, name }) {
-    let day = time.getDate(),
+    let time = new Date(),
+        seconds = time.getSeconds(),
+        minutes = time.getMinutes(),
+        hours = time.getHours(),
+        day = time.getDate(),
         month = ((time.getMonth() + 1) < 10) ? `0${time.getMonth()}` : time.getMonth(),
         year = time.getFullYear(),
-        date = `${day}-${month}-${year}`,
+        date = `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`,
         json = JSON.stringify({ score, date, name });
 
     postData(dbUrl, json);
