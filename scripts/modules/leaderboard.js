@@ -4,14 +4,13 @@ const dbUrl = 'http://localhost:3000/leaderboard';
 let time = new Date();
 
 function leaderboardAddScores({ score, name }) {
-
     let day = time.getDate(),
         month = ((time.getMonth() + 1) < 10) ? `0${time.getMonth()}` : time.getMonth(),
         year = time.getFullYear(),
-        date = `${day}-${month}-${year}`;
+        date = `${day}-${month}-${year}`,
+        json = JSON.stringify({ score, date, name });
 
-    let json = { score, date, name };
-    postData(dbUrl, JSON.stringify(json));
+    postData(dbUrl, json);
 }
 
 async function leaderboardGetScores() {
@@ -25,13 +24,13 @@ async function leaderboardGetScores() {
     } else {
         scores.forEach(item => {
             leaderboard.innerHTML += `
-            <li>
-                <strong>Name:</strong> ${item.name} 
-                <strong>Scores:</strong> ${item.score} 
-                <strong>Date:</strong> ${item.date}
-            </li>
-            <hr>
-        `;
+                <li>
+                    <strong>Name:</strong> ${item.name} 
+                    <strong>Scores:</strong> ${item.score} 
+                    <strong>Date:</strong> ${item.date}
+                </li>
+                <hr>
+            `;
         });
     }
 }

@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function endGame({ status }) {
         clearInterval(keyHandler);
         leaderboardAddScores({ score: playerSize, name: 'Guest' });
-        leaderboardGetScores();
 
         let message = document.createElement('div');
         message.classList.add('message');
@@ -91,6 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', () => {
             pointsCounter.textContent = playerSize;
             message.remove();
+            leaderboardGetScores();
         });
     }
 
